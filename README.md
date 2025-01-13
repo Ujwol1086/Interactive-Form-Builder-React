@@ -46,6 +46,7 @@ Radio: Set of radio buttons for single choice selection.
 Folder Structure
 
 src/
+
 ├── components/
 │   ├── DisplayDetails.js        # Displays the submitted form data
 │   ├── FormBuilder.js           # Main form builder component
