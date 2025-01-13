@@ -63,6 +63,9 @@ src/
 
 Technologies Used
 React: A JavaScript library for building user interfaces.
+
 TailwindCSS: A utility-first CSS framework for rapidly building custom designs.
+
 Zod: TypeScript-first schema declaration and validation library.
+
 JavaScript: The main programming language used for this application.
