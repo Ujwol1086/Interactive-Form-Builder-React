@@ -49,17 +49,17 @@ src/
 
 ├── components/
 
-│   ├── DisplayDetails.js        # Displays the submitted form data
+│   ├── DisplayDetails.js          # Displays the submitted form data
 
-│   ├── FormBuilder.js           # Main form builder component
+│   ├── FormBuilder.js             # Main form builder component
 
-│   └── FormField.js             # Individual form field component
+│   └── FormField.js               # Individual form field component
 
-├── App.js                       # Main entry point for the app
+├── App.js                         # Main entry point for the app
 
-├── index.js                     # Application initialization
+├── index.js                       # Application initialization
 
-└── styles.css                   # Custom CSS file (if needed)
+└── styles.css                     # Custom CSS file (if needed)
 
 Technologies Used
 React: A JavaScript library for building user interfaces.
