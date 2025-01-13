@@ -3,13 +3,19 @@ An interactive and dynamic form builder built with React, JavaScript, and Tailwi
 
 Features
 Drag-and-Drop Form Builder: Add, remove, and customize form fields with ease.
+
 Dynamic Form Fields: Users can create text, select, and radio input fields.
+
 Field Validation: Form fields are validated before submission using Zod.
+
 Form Preview: View the form in preview mode to test its functionality before submitting.
+
 Display Submitted Data: After form submission, the entered data is displayed in a formatted table.
+
 Responsive UI: Fully responsive design powered by TailwindCSS for mobile and desktop views.
 
 Installation
+
 Clone the repository:
 git clone https://github.com/your-username/form-builder.git
 
@@ -40,7 +46,9 @@ You can remove a field by clicking the Remove this field button next to each fie
 
 Form Field Types:
 Text: Standard text input field.
+
 Select: Dropdown menu with predefined options.
+
 Radio: Set of radio buttons for single choice selection.
 
 Folder Structure
