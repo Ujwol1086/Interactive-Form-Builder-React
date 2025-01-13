@@ -2,7 +2,6 @@ Interactive Form Builder
 An interactive and dynamic form builder built with React, JavaScript, and TailwindCSS. This tool allows users to create custom forms by adding and removing form fields dynamically. It also supports form validation, preview mode, and form submission.
 
 Features
-Drag-and-Drop Form Builder: Add, remove, and customize form fields with ease.
 
 Dynamic Form Fields: Users can create text, select, and radio input fields.
 
@@ -35,16 +34,21 @@ Usage
 Create a Custom Form:
 
 Click the Add New Field button to add a new form field.
+
 For each field, provide a title, type (text, select, radio), and options (for select/radio fields).
+
 Click Submit Form to validate and submit the form.
 
 View Submitted Data:
+
 After form submission, the submitted form data will be displayed in a table format under the "Submitted Details" section.
 
 Remove a Field:
+
 You can remove a field by clicking the Remove this field button next to each field.
 
 Form Field Types:
+
 Text: Standard text input field.
 
 Select: Dropdown menu with predefined options.
@@ -70,6 +74,7 @@ src/
 └── styles.css                     # Custom CSS file (if needed)
 
 Technologies Used
+
 React: A JavaScript library for building user interfaces.
 
 TailwindCSS: A utility-first CSS framework for rapidly building custom designs.
