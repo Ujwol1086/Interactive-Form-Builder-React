@@ -1,8 +1,9 @@
-// src/components/FormBuilder.js
-import React, { useState, useCallback, useMemo } from "react";
+// Import necessary dependencies and components
+import { useState, useCallback, useMemo } from "react";
 import { z } from "zod";
 import DisplayDetails from "./DisplayDetails"; // Import the DisplayDetails component
 
+// Initial fields for the form with types and labels
 const initialFields = [
   { id: "1", type: "text", label: "Full Name" },
   {
@@ -14,15 +15,16 @@ const initialFields = [
 ];
 
 const FormBuilder = () => {
+  // State variables for managing form fields, data, errors, and form status
   const [fields, setFields] = useState(initialFields);
   const [formData, setFormData] = useState({});
   const [errorMessages, setErrorMessages] = useState({});
   const [newFieldTitle, setNewFieldTitle] = useState("");
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false); // Track form submission
-  const [previewMode, setPreviewMode] = useState(false); // Track preview mode
+  const [previewMode, setPreviewMode] = useState(false); // Track preview mode status
 
-  // Schema validation using Zod
+  // Schema validation using Zod to validate form data
   const schema = useMemo(
     () =>
       z.object({
@@ -32,7 +34,7 @@ const FormBuilder = () => {
     []
   );
 
-  // Handle field change
+  // Handle changes in field values
   const handleFieldChange = (id, value) => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
@@ -43,11 +45,12 @@ const FormBuilder = () => {
       e.preventDefault();
 
       try {
-        schema.parse(formData); // Validate form data
+        schema.parse(formData); // Validate form data using Zod schema
         setErrorMessages({});
         setFormSubmitted(true); // Mark form as submitted
         setPreviewMode(false); // Disable preview mode after submission
       } catch (error) {
+        // Store error messages for invalid fields
         setErrorMessages(
           error.errors.reduce((acc, curr) => {
             acc[curr.path[0]] = curr.message;
@@ -59,34 +62,36 @@ const FormBuilder = () => {
     [formData, schema]
   );
 
-  // Handle adding a new field
+  // Handle adding a new field to the form
   const handleAddField = () => {
     if (!newFieldTitle.trim()) {
       alert("Please provide a title for the new field.");
       return;
     }
 
+    // Create new field with a unique ID and specified title
     const newField = {
       id: `${fields.length + 1}`,
       type: "text",
       label: newFieldTitle,
     };
-    setFields([...fields, newField]);
-    setNewFieldTitle("");
-    setShowTitleInput(false);
+
+    setFields([...fields, newField]); // Add new field to the list
+    setNewFieldTitle(""); // Reset the new field title input
+    setShowTitleInput(false); // Hide the new field input
   };
 
-  // Handle removing a field
+  // Handle removing a field from the form
   const handleRemoveField = (id) => {
     setFields(fields.filter((field) => field.id !== id));
   };
 
-  // Toggle Preview Mode
+  // Toggle between preview and edit mode
   const togglePreviewMode = () => {
     setPreviewMode((prev) => !prev);
   };
 
-  // Show form details after submission
+  // If form is submitted, display form data using DisplayDetails component
   if (formSubmitted) {
     return <DisplayDetails formData={formData} />;
   }
@@ -98,7 +103,7 @@ const FormBuilder = () => {
       </h2>
 
       <div className="mb-4 text-center">
-        {/* Toggle Preview Mode Button */}
+        {/* Button to toggle between preview and edit modes */}
         <button
           onClick={togglePreviewMode}
           className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
@@ -107,13 +112,15 @@ const FormBuilder = () => {
         </button>
       </div>
 
-      {!previewMode ? (
+      {!previewMode ? ( // Render form in edit mode if preview is not enabled
         <form onSubmit={handleSubmit}>
           {fields.map((field) => (
             <div key={field.id} className="mb-4">
               <label className="block text-gray-700 font-medium">
                 {field.label}
               </label>
+
+              {/* Render text input field */}
               {field.type === "text" && (
                 <input
                   type="text"
@@ -122,6 +129,8 @@ const FormBuilder = () => {
                   className="w-full mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               )}
+
+              {/* Render select dropdown field */}
               {field.type === "select" && field.options && (
                 <select
                   onChange={(e) => handleFieldChange(field.id, e.target.value)}
@@ -136,11 +145,15 @@ const FormBuilder = () => {
                   ))}
                 </select>
               )}
+
+              {/* Display validation error message for each field */}
               {errorMessages[field.id] && (
                 <p className="text-red-500 text-sm mt-1">
                   {errorMessages[field.id]}
                 </p>
               )}
+
+              {/* Button to remove a field */}
               <button
                 type="button"
                 onClick={() => handleRemoveField(field.id)}
@@ -151,7 +164,7 @@ const FormBuilder = () => {
             </div>
           ))}
 
-          {!showTitleInput ? (
+          {!showTitleInput ? ( // Show button to add new field if title input is not shown
             <div className="mb-4">
               <button
                 type="button"
@@ -163,6 +176,7 @@ const FormBuilder = () => {
             </div>
           ) : (
             <>
+              {/* Input field for new field title */}
               <div className="mb-4">
                 <label className="block text-gray-700 font-medium">
                   New Field Title
@@ -175,6 +189,8 @@ const FormBuilder = () => {
                   placeholder="Enter field title"
                 />
               </div>
+
+              {/* Confirm and Cancel buttons for adding new field */}
               <div className="mb-4">
                 <button
                   type="button"
@@ -196,6 +212,7 @@ const FormBuilder = () => {
             </>
           )}
 
+          {/* Submit button to submit the form */}
           <div className="mb-4">
             <button
               type="submit"
@@ -209,6 +226,7 @@ const FormBuilder = () => {
         <div className="text-center">
           <h3 className="text-xl font-semibold mb-4">Form Preview</h3>
           <div>
+            {/* Display form data in preview mode */}
             {fields.map((field) => (
               <div key={field.id} className="mb-2">
                 <strong>{field.label}: </strong>
@@ -217,6 +235,7 @@ const FormBuilder = () => {
             ))}
           </div>
           <div className="mb-4">
+            {/* Button to confirm form submission */}
             <button
               onClick={handleSubmit}
               className="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
