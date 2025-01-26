@@ -1,7 +1,7 @@
 // Import necessary dependencies and components
 import { useState, useCallback, useMemo } from "react";
 import { z } from "zod";
-import DisplayDetails from "./DisplayDetails"; // Import the DisplayDetails component
+import DisplayDetails from "./displayDetails"; // Import the DisplayDetails component
 
 // Initial fields for the form with types and labels
 const initialFields = [
